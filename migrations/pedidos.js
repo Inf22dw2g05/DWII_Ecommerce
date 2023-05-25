@@ -10,7 +10,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       data: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE,
+        allowNull: false,
+        autoIncrement: true
       },
       situacao: {
         type: Sequelize.STRING

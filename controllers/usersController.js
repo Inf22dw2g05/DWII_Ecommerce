@@ -1,10 +1,10 @@
 const { User } = require('../models');
 
 // Método GET - Obter todos os usuários
-const getAllUsers = async (req, res) => {
+const getAllUser = async (req, res) => {
   try {
-    const users = await User.findAll();
-    res.json(users);
+    const user = await User.findAll();
+    res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao obter os usuários.' });
   }
@@ -55,7 +55,7 @@ const deleteUser = async (req, res) => {
 };
 
 module.exports = {
-  getAllUsers,
+  getAllUser,
   createUser,
   updateUser,
   deleteUser

@@ -1,23 +1,42 @@
-const db = require("./models");
+import db from "./models";
 
 
-const userController = require('./controllers/usersController')
-const mysql = require('mysql2');
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import { getAllUser, createUser, updateUser, deleteUser } from './controllers/usersController';
+import { getAllPedido, createPedido, updatePedido, deletePedido } from './controllers/pedidosController';
+import { getAllProduto, createProduto, updateProduto, deleteProduto } from './controllers/produtosController'; 
+import { getAllCategoria, createCategoria, updateCategoria, deleteCategoria } from './controllers/categoriasController';
+import { createConnection } from 'mysql2';
+import express, { json } from 'express';
+import { json as _json } from 'body-parser';
+import cors from 'cors';
 
 const app = express();
-app.use(express.json());
-app.use(bodyParser.json());
+app.use(json());
+app.use(_json());
 app.use(cors());
 
-app.get('/users', userController.getAllUsers);
-app.post('/users', userController.createUser);
-app.put('/users/:id', userController.updateUser);
-app.delete('/users/:id', userController.deleteUser);
+app.get('/users', getAllUser);
+app.post('/users', createUser);
+app.put('/users/:id', updateUser);
+app.delete('/users/:id', deleteUser);
 
-const connection = mysql.createConnection({
+app.get('/pedidos', getAllPedido);
+app.post('/pedidos', createPedido);
+app.put('/pedidos/:id', updatePedido);
+app.delete('/pedidos/:id', deletePedido);
+
+
+app.get('/produtos', getAllProduto);
+app.post('/produtos', createProduto);
+app.put('/produtos/:id', updateProduto);
+app.delete('/produtos/:id', deleteProduto);
+
+app.get('/categorias', getAllCategoria);
+app.post('/categorias', createCategoria);
+app.put('/categorias/:id', updateCategoria);
+app.delete('/categorias/:id', deleteCategoria);
+
+const connection = createConnection({
     host: 'localhost', // Host do banco de dados
     user: 'root', // Usuário do banco de dados
     password: '123456', // Senha do banco de dados
@@ -52,5 +71,5 @@ function executeQuery() {
 //         executeQuery();
 //     }
 // });
-const port = 3000;
-app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));
+const port = 3001;
+app.listen(port, () => console.log(`Servidor na porta ${port}`));

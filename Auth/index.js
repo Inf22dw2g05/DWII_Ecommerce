@@ -2,8 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-const port = 3000;
-
+const port = 3001;
+const session = require('express-session');
+const passport = require('passport');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -13,13 +14,33 @@ app.use(express.static(__dirname + "/public"));
 app.listen(port, function () {
  console.log(`app running on localhost:${port}`);
 }); 
+// Configuração da sessão
+app.use(session({
+    secret: 'Dexterdebrit0',
+    resave: false,
+    saveUninitialized: false
+}));
 
-const auth = function (req, res, next) {
+// Configuração do Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Middleware de autenticação personalizado
+function auth(req, res, next) {
     if (req.isAuthenticated()) {
-        return next();
+      // O usuário está autenticado
+      return next();
     }
-    res.redirect("/login");
-};
+    // Redireciona para a página de login ou envia uma resposta de erro
+    res.redirect('/login');
+}
+
+// Rotas protegidas que requerem autenticação
+app.get('/profile', auth, (req, res) => {
+    // Apenas usuários autenticados podem acessar essa rota
+    res.send('Perfil do usuário');
+});
+  
 
 app.get("/", auth, function (req, res) {
   res.sendFile(__dirname + "/public/protected.html");
@@ -32,8 +53,7 @@ const GITHUB_CLIENT_ID = "2416e192900c4a1e59b1";
 const GITHUB_CLIENT_SECRET = "9efe20db3e2d2616b50fa15be7eee3c150c0dfc4";
 const GITHUB_CALLBACK_URL = "http://localhost:3000/auth/github/callback";
 
-const session = require("express-session");
-const passport = require("passport");
+
 const GitHubStrategy = require("passport-github2").Strategy;
 
    
@@ -63,7 +83,7 @@ passport.use( new GitHubStrategy(passportOptions,
     })
 );
 const sessionOptions = {
-    secret: "my top secret key",
+    secret: "Dexterdebrit0",
     resave: false,
     saveUninitialized: true,
 };
@@ -129,3 +149,6 @@ const swaggerSpec = swaggerJSDoc(options);
 app.get("/docs/swagger.json", (req, res) => res.json(swaggerSpec));
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.listen(3001, () => {
+    console.log('Servidor em execução na porta 3001');
+  });

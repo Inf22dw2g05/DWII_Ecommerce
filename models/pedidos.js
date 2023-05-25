@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Pedidos.init({
-    data: DataTypes.STRING,
+    data: DataTypes.DATE,
     situacao: DataTypes.STRING,
     valor: DataTypes.FLOAT
   }, {
