@@ -1,4 +1,4 @@
-COMO RODAR O PROJETO BAIXADO
+COMO INICIALIZAR O PROJETO 
 Instalar todas as dependencias indicadas pelo package.json
 ### npm install
 
