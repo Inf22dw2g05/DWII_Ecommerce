@@ -1,13 +1,13 @@
 openapi: 3.0.3
 info:
-  title: Plataforma de Comércio Eletrônico API
+  title: E-commerce API
   version: 1.0.0
 servers:
-- url: /
+- url: http://localhost:3001/docs/
 paths:
   /usuarios:
     post:
-      summary: Criar um novo usuário
+      summary: Criar um novo usuario
       operationId: usuariosPOST
       requestBody:
         content:
@@ -17,9 +17,9 @@ paths:
         required: true
       responses:
         "201":
-          description: Usuário criado com sucesso
+          description: Usuario criado com sucesso
         "400":
-          description: Erro ao criar o usuário
+          description: Erro ao criar o Usuario
       x-swagger-router-controller: Default
   /usuarios/{id}:
     get:
@@ -112,6 +112,21 @@ paths:
         "404":
           description: Usuário não encontrado
       x-swagger-router-controller: Default
+  /categorias:
+    post:
+      responses:
+        '200':
+          description: Resposta bem-sucedida
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string 
+                required:
+                  - nome
+                      
 components:
   schemas:
     Usuario:
@@ -162,3 +177,15 @@ components:
           type: integer
         quantidade:
           type: integer
+    Categoria:
+      type: object
+      properties:
+        nome:
+          type: string
+      example:
+        nome: nome
+       
+       
+
+      
+ 

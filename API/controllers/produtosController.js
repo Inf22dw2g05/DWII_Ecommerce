@@ -1,4 +1,4 @@
-const { Produto } = require('../models');
+const { Produto } = require('../models/produtos');
 
 // Método GET - Obter todos os produto
 const getAllProduto = async (req, res) => {
@@ -58,5 +58,5 @@ module.exports = {
   getAllProduto,
   createProduto,
   updateProduto,
-  deleteProduto,
+  deleteProduto
 };

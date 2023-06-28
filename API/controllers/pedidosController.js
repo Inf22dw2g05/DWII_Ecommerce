@@ -1,10 +1,10 @@
-const { Pedidos } = require('../models');
+const { Pedido } = require('../models/pedidos');
 
 // Método GET - Obter todos os pedidos
 const getAllPedido = async (req, res) => {
   try {
-    const pedidos = await Pedidos.findAll();
-    res.json(pedidos);
+    const pedido = await Pedido.findAll();
+    res.json(pedido);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao obter os pedidos.' });
   }
@@ -14,7 +14,7 @@ const getAllPedido = async (req, res) => {
 const createPedido = async (req, res) => {
     const { data, situacao, valor } = req.body;
     try {
-      const novoPedido = await Pedidos.create({ data, situacao, valor });
+      const novoPedido = await Pedido.create({ data, situacao, valor });
       res.status(201).json(novoPedido);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao criar o pedido.' });
@@ -26,7 +26,7 @@ const updatePedido = async (req, res) => {
     const { id } = req.params;
     const { data, situacao, valor } = req.body;
     try {
-      const pedido = await Pedidos.findByPk(id);
+      const pedido = await Pedido.findByPk(id);
       if (!pedido) {
         res.status(404).json({ error: 'Pedido não encontrado.' });
       } else {
@@ -42,7 +42,7 @@ const updatePedido = async (req, res) => {
 const deletePedido = async (req, res) => {
     const { id } = req.params;
     try {
-      const pedido = await Pedidos.findByPk(id);
+      const pedido = await Pedido.findByPk(id);
       if (!pedido) {
         res.status(404).json({ error: 'Pedido não encontrado.' });
       } else {

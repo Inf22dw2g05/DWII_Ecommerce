@@ -1,0 +1,58 @@
+paths:
+  /categorias:
+    get:
+      summary: Obter todas as categorias
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Criar uma nova categoria
+      parameters:
+        - name: categoria
+          in: body
+          description: Objeto de categoria
+          required: true
+          schema:
+            $ref: '#/definitions/Categoria'
+      responses:
+        '201':
+          description: Criado
+  /categorias/{id}:
+    put:
+      summary: Atualizar uma categoria pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID da categoria
+          required: true
+          type: string
+        - name: categoria
+          in: body
+          description: Objeto de categoria
+          required: true
+          schema:
+            $ref: '#/definitions/Categoria'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Categoria não encontrada
+    delete:
+      summary: Excluir uma categoria pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID da categoria
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Sem conteúdo
+        '404':
+          description: Categoria não encontrada
+definitions:
+  Categoria:
+    type: object
+    properties:
+      nome:
+        type: string

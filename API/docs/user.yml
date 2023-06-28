@@ -1,0 +1,76 @@
+paths:
+  /usuarios:
+    get:
+      summary: Obter todos os usuários
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Criar um novo usuário
+      parameters:
+        - name: usuario
+          in: body
+          description: Objeto de usuário
+          required: true
+          schema:
+            $ref: '#/definitions/Usuario'
+      responses:
+        '201':
+          description: Usuario criado com sucesso
+  /usuarios/{id}:
+    get:
+      summary: Obter um usuário pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID do usuário
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Usuário não encontrado
+    put:
+      summary: Atualizar um usuário pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID do usuário
+          required: true
+          type: string
+        - name: usuario
+          in: body
+          description: Objeto de usuário
+          required: true
+          schema:
+            $ref: '#/definitions/Usuario'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Usuário não encontrado
+    delete:
+      summary: Excluir um usuário pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID do usuário
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Sem conteúdo
+        '404':
+          description: Usuário não encontrado
+definitions:
+  Usuario:
+    type: object
+    properties:
+      nome:
+        type: string
+      sobrenome:
+        type: string
+      email:
+        type: string
+

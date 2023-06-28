@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User } = require('../models/user');
 
 // Método GET - Obter todos os usuários
 const getAllUser = async (req, res) => {
@@ -7,6 +7,20 @@ const getAllUser = async (req, res) => {
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao obter os usuários.' });
+  }
+};
+
+// Método GET - Obter um usuário pelo ID
+const getUserById = async (req, res) => {
+  const userId = req.params.id
+  try{
+    const user = await User.findByPk(userId);
+    if(!user){
+      return res.status(404).json({ error: 'Usuário não encontrado.' });
+    }
+    res.json(user);
+  }catch(error){
+    res.status(500).json({ error: 'Erro ao obter o usuário.' });
   }
 };
 
@@ -56,7 +70,9 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   getAllUser,
+  getUserById,
   createUser,
   updateUser,
   deleteUser
+
 };

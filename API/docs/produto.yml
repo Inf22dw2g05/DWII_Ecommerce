@@ -1,0 +1,62 @@
+paths:
+  /produtos:
+    get:
+      summary: Obter todos os produtos
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Criar um novo produto
+      parameters:
+        - name: produto
+          in: body
+          description: Objeto de produto
+          required: true
+          schema:
+            $ref: '#/definitions/Produto'
+      responses:
+        '201':
+          description: Criado
+  /produtos/{id}:
+    put:
+      summary: Atualizar um produto pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID do produto
+          required: true
+          type: string
+        - name: produto
+          in: body
+          description: Objeto de produto
+          required: true
+          schema:
+            $ref: '#/definitions/Produto'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Produto não encontrado
+    delete:
+      summary: Excluir um produto pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID do produto
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Sem conteúdo
+        '404':
+          description: Produto não encontrado
+definitions:
+  Produto:
+    type: object
+    properties:
+      nome:
+        type: string
+      preco:
+        type: number
+      quantidade:
+        type: integer

@@ -1,0 +1,63 @@
+paths:
+  /pedidos:
+    get:
+      summary: Obter todos os pedidos
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Criar um novo pedido
+      parameters:
+        - name: pedido
+          in: body
+          description: Objeto de pedido
+          required: true
+          schema:
+            $ref: '#/definitions/Pedido'
+      responses:
+        '201':
+          description: Criado
+  /pedidos/{id}:
+    put:
+      summary: Atualizar um pedido pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID do pedido
+          required: true
+          type: string
+        - name: pedido
+          in: body
+          description: Objeto de pedido
+          required: true
+          schema:
+            $ref: '#/definitions/Pedido'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Pedido não encontrado
+    delete:
+      summary: Excluir um pedido pelo ID
+      parameters:
+        - name: id
+          in: path
+          description: ID do pedido
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Sem conteúdo
+        '404':
+          description: Pedido não encontrado
+definitions:
+  Pedido:
+    type: object
+    properties:
+      data:
+        type: string
+        format: date
+      situacao:
+        type: string
+      valor:
+        type: number
