@@ -28,3 +28,9 @@ Criar migrations
 
 Executar migrations
 ### npx sequelize-cli db:migrate  
+
+## criar modelo 
+npx sequelize-cli model:generate --name usuario --attributes nome:string,sobrenome:string,email:string
+npx sequelize-cli model:generate --name categoria --attributes nome:string
+npx sequelize-cli model:generate --name produto --attributes nome:string,preco:DECIMAL,quantidade:INTEGER
+npx sequelize-cli model:generate --name Pedido --attributes data:date,situacao:string,valor:number

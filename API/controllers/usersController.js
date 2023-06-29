@@ -1,4 +1,4 @@
-const { User } = require('../models/user');
+const { User } = require('../models/usuario');
 
 // Método GET - Obter todos os usuários
 const getAllUser = async (req, res) => {
@@ -26,9 +26,9 @@ const getUserById = async (req, res) => {
 
 // Método POST - Criar um novo usuário
 const createUser = async (req, res) => {
-  const { firstName, lastName, email } = req.body;
+  const { nome, sobrenome, email } = req.body;
   try {
-    const user = await User.create({ firstName, lastName, email });
+    const user = await User.create({ nome, sobrenome, email });
     res.status(201).json(user);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao criar o usuário.' });
@@ -38,13 +38,13 @@ const createUser = async (req, res) => {
 // Método PUT - Atualizar um usuário existente
 const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { firstName, lastName, email } = req.body;
+  const { nome, sobrenome, email } = req.body;
   try {
     const user = await User.findByPk(id);
     if (!user) {
       res.status(404).json({ error: 'Usuário não encontrado.' });
     } else {
-      await user.update({ firstName, lastName, email });
+      await user.update({ nome, sobrenome, email });
       res.json(user);
     }
   } catch (error) {
@@ -76,3 +76,4 @@ module.exports = {
   deleteUser
 
 };
+

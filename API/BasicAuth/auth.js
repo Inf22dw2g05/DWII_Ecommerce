@@ -1,7 +1,7 @@
-const username = 'Alesandro0012';
-const password = 'Caboverde21';
-const credentials = `${username}:${password}`;
-const encodedCredentials = Buffer.from(credentials).toString('base64');
+// const username = 'Alesandro0012';
+// const password = 'Caboverde21';
+// const credentials = `${username}:${password}`;
+// const encodedCredentials = Buffer.from(credentials).toString('base64');
 
 // const axios = require('axios');
 

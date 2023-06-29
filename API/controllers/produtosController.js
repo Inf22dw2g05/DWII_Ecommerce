@@ -1,8 +1,8 @@
-const { Produto } = require('../models/produtos');
+const { Produto } = require('../models/object');
 
 // Método GET - Obter todos os produto
 const getAllProduto = async (req, res) => {
-  try {
+  try { 
     const produto = await Produto.findAll();
     res.json(produto);
   } catch (error) {

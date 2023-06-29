@@ -1,6 +1,5 @@
 const express = require('express');
 const basicAuth = require('basic-auth');
-const app = express();
 const port = 3000;
 const cors = require("cors");
 const session = require("express-session");
@@ -11,6 +10,7 @@ const config = require('../API/config/config');
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./controllers/swaggerConfig");
 const passport = require("./passport/passport");
+const app = express();
 const sessionOptions = {
 
   secret: "my top secret key",
@@ -19,20 +19,20 @@ const sessionOptions = {
 
   saveUninitialized: true,
 
-};
+}; 
 
-const authenticate = (req, res, next) => {
-  const credentials = basicAuth(req);
+// const authenticate = (req, res, next) => {
+//   const credentials = basicAuth(req);
 
-  if (!credentials || credentials.name !== 'Alesandro0012' || credentials.pass !== 'Caboverde21') {
-    res.set('WWW-Authenticate', 'Basic realm="Autenticação requerida"');
-    return res.status(401).send('Credenciais inválidas.');
-  }
+//   if (!credentials || credentials.name !== 'Alesandro0012' || credentials.pass !== 'Caboverde21') {
+//     res.set('WWW-Authenticate', 'Basic realm="Autenticação requerida"');
+//     return res.status(401).send('Credenciais inválidas.');
+//   }
 
-  next();
-};
+//   next();
+// };
 
-app.use(authenticate);
+// app.use(authenticate);
 app.use('/', router );
 app.use(cors());
 
@@ -51,7 +51,9 @@ app.get('/', (req, res) => {
 // Rota para o Swagger UI configuration
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+
+
 app.listen(3000, () => {
   console.log('Servidor em execução na porta 3000');
-  console.log('http://localhost:3000/');
+  console.log('http://localhost:3000');
 });

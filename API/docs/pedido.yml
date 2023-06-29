@@ -1,5 +1,5 @@
 paths:
-  /pedidos:
+  /pedido:
     get:
       summary: Obter todos os pedidos
       responses:
@@ -17,7 +17,7 @@ paths:
       responses:
         '201':
           description: Criado
-  /pedidos/{id}:
+  /pedido/{id}:
     put:
       summary: Atualizar um pedido pelo ID
       parameters:

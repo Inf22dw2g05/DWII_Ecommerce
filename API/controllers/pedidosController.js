@@ -1,4 +1,4 @@
-const { Pedido } = require('../models/pedidos');
+const { Pedido } = require('../models/pedido');
 
 // Método GET - Obter todos os pedidos
 const getAllPedido = async (req, res) => {
