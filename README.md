@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+COMO FOI FEITO ESTE PROJECTO
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Criar o arquivo packege
+### npm init
 
-## Available Scripts
 
-In the project directory, you can run:
+Instalar todas as dependencias indicada pelo package.json
+### npm install
 
-### `npm start`
+Iniciar o projeto
+### node app.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+SEQUENCIA PARA CRIAR O PROJETO
+Criar o arquivo package
+### npm init
 
-### `npm test`
+Sequelize é uma biblioteca Javascript que facilita o gerenciamento do banco de dados SQL
+### npm install --save sequelize
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Instalar o drive do banco de dados
+### npm install --save mysql2
 
-### `npm run build`
+Sequelize-cli interface de linha de comando usada para criar modelos, configurações e arquivos de migração para bancos de dados
+### npm install --save-dev sequelize-cli
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Iniciar o Sequelize-cli e criar o arquivo config
+### npx sequelize-cli init
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Manipular variaveis de ambiente
+### npm install --save dotenv 
 
-### `npm run eject`
+Criar a migration
+### npx sequelize-cli migration:generate --name create-usuarios 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Instalar a dependencia nodemon
+### npm install -g nodemon
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Instalar a dependencia como desenvolvedor para reiniciar o servidor
+### npm install --save-dev nodemon
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Rodar o projeto usando o nodemon
+### nodemon app.js
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Abrir o endereço no navegador
+### http://localhost:3000
