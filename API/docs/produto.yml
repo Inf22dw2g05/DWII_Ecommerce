@@ -1,62 +1,156 @@
 paths:
   /produto:
     get:
-      summary: Obter todos os produtos
+      tags:
+        - Produto
+      summary: Retrieve Product
+      security: 
+             - githubAuth: ['read'] # Oauth 2
+      produces:
+        - application/json
       responses:
-        '200':
-          description: OK
+        200:
+          description: Success Message
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/definitions/produto"
+        "401":
+          description: Unauthorized
     post:
-      summary: Criar um novo produto
-      parameters:
-        - name: produto
-          in: body
-          description: Objeto de produto
-          required: true
-          schema:
-            $ref: '#/definitions/Produto'
+      tags:
+        - Produto
+      summary: Create Produto
+      security:
+          - githubAuth: ['write'] # Oauth 2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/produtoEx"
+          application/xml:
+            schema:
+              $ref: "#/definitions/produtoEx"
       responses:
-        '201':
-          description: Criado
+        "200":
+          description: Create a Product model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/produto"
+            application/xml:
+              schema:
+                $ref: "#/definitions/produto"
+        "401":
+          description: Unauthorized
   /produto/{id}:
-    put:
-      summary: Atualizar um produto pelo ID
+    get:
+      tags:
+        - Produto
+      summary: Retrieve Produto
       parameters:
         - name: id
           in: path
-          description: ID do produto
           required: true
-          type: string
-        - name: produto
-          in: body
-          description: Objeto de produto
-          required: true
+          style: simple
+          explode: false
           schema:
-            $ref: '#/definitions/Produto'
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve Product id 1
+              value: 1
       responses:
-        '200':
-          description: OK
-        '404':
-          description: Produto não encontrado
-    delete:
-      summary: Excluir um produto pelo ID
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/produto"
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    put:
+      tags:
+        - Produto
+      summary: Update Product
       parameters:
         - name: id
           in: path
-          description: ID do produto
           required: true
-          type: string
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Update Product id 1
+              value: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/produtoEx"
+        required: true
       responses:
-        '204':
-          description: Sem conteúdo
-        '404':
-          description: Produto não encontrado
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: Product updated success
+                $ref: "#/definitions/produto"
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    delete:
+      tags:
+        - Produto
+      summary: Delete Product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Delete Product id 1
+              value: 1
+      responses:
+        "204":
+          description: No content
+        "404":
+          description: id not found
 definitions:
-  Produto:
+  produto:
+    type: object
+    properties:
+      id:
+        type: integer
+      nome:
+        type: string
+      preco:
+        type: string
+      quantidade:
+        type: string
+  produtoEx:
     type: object
     properties:
       nome:
         type: string
       preco:
-        type: number
+        type: string
       quantidade:
-        type: integer
+        type: string

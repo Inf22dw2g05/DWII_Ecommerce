@@ -35,4 +35,4 @@ passport.use(new GitHubStrategy({
 
 }));
 
-module.exports = passport; // Export the passport object directly
+module.exports = passport;

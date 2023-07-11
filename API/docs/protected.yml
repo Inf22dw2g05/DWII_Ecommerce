@@ -1,0 +1,14 @@
+paths:
+  /protected:
+    get:
+      summary: Protected endpoint
+      description: This endpoint requires authentication
+      security:
+        - githubAuth: ["https://www.githubapis.com/auth/gmail.readonly"]
+      responses:
+        '200':
+          description: OK
+        "400":
+          description: Bad request
+        "401":
+           description: Unauthorized

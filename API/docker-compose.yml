@@ -1,0 +1,36 @@
+version: '3'
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_PASSWORD: 123456
+    volumes:
+      - ecommerce-data:/var/lib/mysql
+    networks:
+      - ecommerce
+        
+      
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+      MYSQL_DB: loja_online
+    networks:
+      - ecommerce
+
+networks:
+  ecommerce:
+volumes:
+  ecommerce-data:

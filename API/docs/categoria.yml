@@ -1,58 +1,149 @@
 paths:
   /categoria:
     get:
-      summary: Obter todas as categorias
+      tags:
+        - Categoria
+      summary: Retrieve Categoria
+      security: 
+             - githubAuth: ['read'] # Oauth 2
+      produces:
+        - application/json
       responses:
-        '200':
-          description: OK
+        200:
+          description: Success Message
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/definitions/categoria"
+        "401":
+          description: Unauthorized
     post:
-      summary: Criar uma nova categoria
-      parameters:
-        - name: categoria
-          in: body
-          description: Objeto de categoria
-          required: true
-          schema:
-            $ref: '#/definitions/Categoria'
+      tags:
+        - Categoria
+      summary: Create Categoria
+      security:
+          - githubAuth: ['write'] # Oauth 2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/categoriaEx"
+          application/xml:
+            schema:
+              $ref: "#/definitions/categoriaEx"
       responses:
-        '201':
-          description: Criado
+        "200":
+          description: Create a Categoria model instance
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/categoria"
+            application/xml:
+              schema:
+                $ref: "#/definitions/categoria"
+        "401":
+          description: Unauthorized
   /categoria/{id}:
-    put:
-      summary: Atualizar uma categoria pelo ID
+    get:
+      tags:
+        - Categoria
+      summary: Retrieve Categoria
       parameters:
         - name: id
           in: path
-          description: ID da categoria
           required: true
-          type: string
-        - name: categoria
-          in: body
-          description: Objeto de categoria
-          required: true
+          style: simple
+          explode: false
           schema:
-            $ref: '#/definitions/Categoria'
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve Categoria id 1
+              value: 1
       responses:
-        '200':
-          description: OK
-        '404':
-          description: Categoria não encontrada
-    delete:
-      summary: Excluir uma categoria pelo ID
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/categoria"
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    put:
+      tags:
+        - Categoria
+      summary: Update Categoria
       parameters:
         - name: id
           in: path
-          description: ID da categoria
           required: true
-          type: string
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Update Categoria id 1
+              value: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/categoriaEx"
+        required: true
       responses:
-        '204':
-          description: Sem conteúdo
-        '404':
-          description: Categoria não encontrada
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                description: Categoria updated success
+                $ref: "#/definitions/categoria"
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+    delete:
+      tags:
+        - Categoria
+      summary: Delete Categoria
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Delete Categoria id 1
+              value: 1
+      responses:
+        "204":
+          description: No content
+        "404":
+          description: id not found
 definitions:
-  Categoria:
+  categoria:
+    type: object
+    properties:
+      id:
+        type: integer
+      nome:
+        type: string
+  categoriaEx:
     type: object
     properties:
       nome:
         type: string
+

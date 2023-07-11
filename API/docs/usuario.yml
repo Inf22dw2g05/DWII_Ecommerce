@@ -1,9 +1,9 @@
 paths:
-  /pedido:
+  /usuario:
     get:
       tags:
-        - Pedido
-      summary: Retrieve Pedido
+        - Usuario
+      summary: Retrieve Usuario
       security: 
              - githubAuth: ['read'] # Oauth 2
       produces:
@@ -16,40 +16,40 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/definitions/pedido"
+                  $ref: "#/definitions/usuario"
         "401":
           description: Unauthorized
     post:
       tags:
-        - Pedido
-      summary: Create Pedido
+        - Usuario
+      summary: Create Usuario
       security:
           - githubAuth: ['write'] # Oauth 2
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/definitions/pedidoEx"
+              $ref: "#/definitions/usuarioEx"
           application/xml:
             schema:
-              $ref: "#/definitions/pedidoEx"
+              $ref: "#/definitions/usuarioEx"
       responses:
         "200":
-          description: Create a Pedido model instance
+          description: Create a User model instance
           content:
             application/json:
               schema:
-                $ref: "#/definitions/pedido"
+                $ref: "#/definitions/usuario"
             application/xml:
               schema:
-                $ref: "#/definitions/pedido"
+                $ref: "#/definitions/usuario"
         "401":
           description: Unauthorized
-  /pedido/{id}:
+  /usuario/{id}:
     get:
       tags:
-        - Pedido
-      summary: Retrieve Pedido
+        - Usuario
+      summary: Retrieve Usuario
       parameters:
         - name: id
           in: path
@@ -62,7 +62,7 @@ paths:
             format: int64
           examples:
             one:
-              summary: Retrieve Pedido id 1
+              summary: Retrieve Usuario id 1
               value: 1
       responses:
         "200":
@@ -70,15 +70,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/definitions/pedido"
+                $ref: "#/definitions/usuario"
         "400":
           description: Bad request
         "404":
           description: id not found
     put:
       tags:
-        - Pedido
-      summary: Update Pedido
+        - Usuario
+      summary: Update User
       parameters:
         - name: id
           in: path
@@ -91,13 +91,13 @@ paths:
             format: int64
           examples:
             one:
-              summary: Update Pedido id 1
+              summary: Update User id 1
               value: 1
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/definitions/pedidoEx"
+              $ref: "#/definitions/usuarioEx"
         required: true
       responses:
         "200":
@@ -105,16 +105,16 @@ paths:
           content:
             application/json:
               schema:
-                description: Pedido updated success
-                $ref: "#/definitions/pedido"
+                description: User updated success
+                $ref: "#/definitions/usuario"
         "400":
           description: Bad request
         "404":
           description: id not found
     delete:
       tags:
-        - Pedido
-      summary: Delete Pedido
+        - Usuario
+      summary: Delete User
       parameters:
         - name: id
           in: path
@@ -126,7 +126,7 @@ paths:
             format: int64
           examples:
             one:
-              summary: Delete Pedido id 1
+              summary: Delete User id 1
               value: 1
       responses:
         "204":
@@ -134,23 +134,23 @@ paths:
         "404":
           description: id not found
 definitions:
-  pedido:
+  usuario:
     type: object
     properties:
       id:
         type: integer
-      data:
+      nome:
         type: string
-      situacao:
+      sobrenome:
         type: string
-      valor:
-        type: integer
-  pedidoEx:
+      email:
+        type: string
+  usuarioEx:
     type: object
     properties:
-      data:
+      nome:
         type: string
-      situacao:
+      sobrenome:
         type: string
-      valor:
-        type: integer
+      email:
+        type: string

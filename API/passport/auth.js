@@ -9,7 +9,5 @@ const auth = function (req, res, next) {
     res.redirect("/login");
   
 };
-
-  
   
 module.exports = auth;

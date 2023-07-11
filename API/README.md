@@ -1,36 +1,47 @@
-COMO RODAR O PROJETO BAIXADO
-Instalar todas as dependencias indicadas pelo package.json
+COMO FOI FEITO ESTE PROJECTO
+
+Criar o arquivo packege
+### npm init
+
+
+Instalar todas as dependencias indicada pelo package.json
 ### npm install
+
+Iniciar o projeto
+### node app.js
+
 
 SEQUENCIA PARA CRIAR O PROJETO
 Criar o arquivo package
 ### npm init
 
-Sequelize é uma bilioteca javascript que facilita o gerenciamento de banco de dados  SQL
+Sequelize é uma biblioteca Javascript que facilita o gerenciamento do banco de dados SQL
 ### npm install --save sequelize
 
-Instalar o drive de banco de dados
+Instalar o drive do banco de dados
 ### npm install --save mysql2
 
-Sequelize-cli interface de linha de comando usada para criar modelos, configurações e arquivos de migração para bancos de dados.
+Sequelize-cli interface de linha de comando usada para criar modelos, configurações e arquivos de migração para bancos de dados
 ### npm install --save-dev sequelize-cli
 
-Iniciar o Sequelize-cli e criar o arquivo config.
+Iniciar o Sequelize-cli e criar o arquivo config
 ### npx sequelize-cli init
 
-Rodar o projeto
-### node app.js
 
-### npm install --save dotenv
+Manipular variaveis de ambiente
+### npm install --save dotenv 
 
-Criar migrations
-### npx sequelize-cli migration:generate --name create-users
+Criar a migration
+### npx sequelize-cli migration:generate --name create-usuarios 
 
-Executar migrations
-### npx sequelize-cli db:migrate  
+Instalar a dependencia nodemon
+### npm install -g nodemon
 
-## criar modelo 
-npx sequelize-cli model:generate --name usuario --attributes nome:string,sobrenome:string,email:string
-npx sequelize-cli model:generate --name categoria --attributes nome:string
-npx sequelize-cli model:generate --name produto --attributes nome:string,preco:DECIMAL,quantidade:INTEGER
-npx sequelize-cli model:generate --name Pedido --attributes data:date,situacao:string,valor:number
+Instalar a dependencia como desenvolvedor para reiniciar o servidor
+### npm install --save-dev nodemon
+
+Rodar o projeto usando o nodemon
+### nodemon app.js
+
+Abrir o endereço no navegador
+### http://localhost:3000
