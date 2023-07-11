@@ -1,4 +1,4 @@
-# E.Software_Ecommerce-master
+# Ecommerce
 
 Neste presente trabalho, pretendemos criar uma aplicação web para Venda de produtos de forma online.
 
